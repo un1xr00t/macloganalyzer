@@ -1,30 +1,37 @@
 # macOS Crash Log Analyzer
 
-A Python-based tool to parse and analyze macOS crash logs. This project extracts key information from crash log files—such as the process name, exception type, backtrace, and more—and provides a basic diagnosis of potential causes. It serves as a starting point for developers and support engineers to quickly understand and debug crashes based on log data.
+A Python-based tool to parse and analyze macOS crash logs. This tool extracts key information from crash log files—such as process details, OS version, exception type, termination reason, and backtrace—and provides an improved diagnosis of potential causes. It is designed to help developers and support engineers quickly understand and debug crashes based on log data.
 
 ## Features
 
-- **Crash Log Parsing:**  
-  Extracts essential fields from typical macOS crash logs, including:
-  - Process name
-  - Identifier
-  - Version
-  - Exception Type & Exception Codes
-  - Crashed Thread
-  - A summary of the backtrace
+- **Enhanced Crash Log Parsing:**  
+  The analyzer now extracts additional fields commonly found in macOS crash reports, including:
+  - **Process:** Name of the crashed process.
+  - **Identifier:** Bundle identifier of the process.
+  - **Version:** Application version.
+  - **OS Version:** The version of macOS running on the system.
+  - **Exception Type & Exception Codes:** Details of the exception.
+  - **Termination Reason:** Additional details about why the process terminated.
+  - **Crashed Thread:** The thread number that caused the crash.
+  - **Backtrace:** A summary of the backtrace for further analysis.
 
-- **Basic Diagnosis:**  
-  Provides a rudimentary analysis based on common exception types (e.g., `EXC_BAD_ACCESS`, `SIGABRT`, `EXC_CRASH`) to help pinpoint potential causes of the crash.
+- **Improved Diagnosis:**  
+  Provides more descriptive diagnostics based on:
+  - Exception types (e.g., `EXC_BAD_ACCESS`, `SIGABRT`, `EXC_CRASH`, `EXC_ARITHMETIC`)
+  - Termination reasons and other hints found in macOS crash reports
 
 - **Command-Line Interface:**  
-  Analyze crash logs easily via the terminal by specifying the path to the log file.
+  Easily analyze crash logs via the terminal by providing the path to the log file.
+
+- **Inspired by Industry Insights:**  
+  Enhanced using insights from articles like [How to Understand macOS Finder Crash Report Alerts](https://appleinsider.com/inside/macos/tips/how-to-understand-macos-finder-crash-report-alerts).
 
 ## Getting Started
 
 ### Prerequisites
 
 - **Python 3.6+**  
-  Ensure Python is installed on your system. You can download it from [python.org](https://www.python.org/).
+  Ensure you have Python installed on your system. Download it from [python.org](https://www.python.org/).
 
 - **Basic Command-Line Knowledge**  
   Familiarity with terminal operations is useful for running the tool.
@@ -33,18 +40,20 @@ A Python-based tool to parse and analyze macOS crash logs. This project extracts
 
 1. **Clone the Repository:**
 
-   `git clone https://github.com/yourusername/macos-crash-log-analyzer.git`
+   ```bash
+   git clone https://github.com/un1xr00t/macloganalyzer.git
+   cd macloganalyzer
    
    `cd macos-crash-log-analyzer`
-3. **(Optional) Create and Activate a Virtual Environment:**
+2. **(Optional) Create and Activate a Virtual Environment:**
   `python3 -m venv venv source venv/bin/activate  # On Windows: venv\Scripts\activate`
-4. **Install Dependencies:**
+3. **Install Dependencies:**
    `pip install -r requirements.txt`
    
 ## Usage
 Run the analyzer by providing the path to your macOS crash log file:
 
-`python crash_log_analyzer.py /path/to/your/crash_log.log`
+`python3 crash_log_analyzer.py /path/to/your/crash_log.log`
 
 The script will output a summary that includes:
 
