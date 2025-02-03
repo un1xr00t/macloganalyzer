@@ -1,0 +1,10 @@
+pandas
+numpy
+scipy
+matplotlib
+seaborn
+requests
+argparse
+pyyaml
+datetime
+loguru
