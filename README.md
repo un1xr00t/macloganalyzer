@@ -34,10 +34,11 @@ A Python-based tool to parse and analyze macOS crash logs. This project extracts
 1. **Clone the Repository:**
 
    `git clone https://github.com/yourusername/macos-crash-log-analyzer.git`
+   
    `cd macos-crash-log-analyzer`
-2. **(Optional) Create and Activate a Virtual Environment:**
+3. **(Optional) Create and Activate a Virtual Environment:**
   `python3 -m venv venv source venv/bin/activate  # On Windows: venv\Scripts\activate`
-3. **Install Dependencies:**
+4. **Install Dependencies:**
    pip install -r requirements.txt
    
 ## Usage
