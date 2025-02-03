@@ -39,7 +39,7 @@ A Python-based tool to parse and analyze macOS crash logs. This project extracts
 3. **(Optional) Create and Activate a Virtual Environment:**
   `python3 -m venv venv source venv/bin/activate  # On Windows: venv\Scripts\activate`
 4. **Install Dependencies:**
-   pip install -r requirements.txt
+   `pip install -r requirements.txt`
    
 ## Usage
 Run the analyzer by providing the path to your macOS crash log file:
