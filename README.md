@@ -40,18 +40,18 @@ A Python-based tool to parse and analyze macOS crash logs. This tool extracts ke
 
 1. **Clone the Repository:**
 
-   `git clone https://github.com/un1xr00t/macloganalyzer.git`
-   `cd macloganalyzer`
+`git clone https://github.com/un1xr00t/macloganalyzer.git`
+`cd macloganalyzer`
    
 2. **(Optional) Create and Activate a Virtual Environment:**
 
-  `python3 -m venv venv`
+`python3 -m venv venv`
   <br />
-  `source venv/bin/activate`
+`source venv/bin/activate`
   
 3. **Install Dependencies:**
 
-   `pip install -r requirements.txt`
+`pip install -r requirements.txt`
    
 ## Usage
 Run the analyzer by providing the path to your macOS crash log file:
