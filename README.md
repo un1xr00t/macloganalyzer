@@ -81,16 +81,13 @@ Output: Prints a plain text summary of the crash details and a diagnostic messag
 
 **What this does:**
 
-Input: The path to your crash log file as before.
-
+Input: The path to your crash log file.
 Additional Options:
 
---binary /path/to/your/binary: Specifies the path to the binary file associated with the crash log. This is used to symbolicate the backtrace, meaning that it will convert raw memory addresses into human-readable function names.
+    --binary /path/to/your/binary: Specifies the path to the binary file associated with the crash log. This is used to symbolicate the backtrace, converting raw memory addresses into human-readable function names.
+    --arch x86_64: Specifies the architecture of the binary (e.g., x86_64 for Intel-based Macs or arm64 for Apple Silicon). This is needed for correct symbolication.
 
---arch x86_64: Specifies the architecture of the binary (e.g., x86_64 for Intel-based Macs or arm64 for Apple Silicon). This is needed for correct symbolication.
-
-Operation: Parses the crash log and also attempts to symbolicate the backtrace using the provided binary and architecture.
-
+Operation: Parses the crash log and attempts to symbolicate the backtrace using the provided binary and architecture.
 Output: Prints a detailed summary that includes symbolicated backtrace entries, making it easier to understand the crash context.
 
 
