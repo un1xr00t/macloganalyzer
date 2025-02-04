@@ -13,35 +13,44 @@ A Python-based tool to parse and analyze macOS crash logs. This tool extracts ke
   - **Exception Type & Exception Codes:** Details of the exception.
   - **Termination Reason:** Additional details about why the process terminated.
   - **Crashed Thread:** The thread number that caused the crash.
-  - **Backtrace:** A summary of the backtrace for further analysis.
+  - **Backtrace:** A detailed backtrace for further analysis.
 
 - **Improved Diagnosis:**  
-  Provides more descriptive diagnostics based on:
+  Provides descriptive diagnostic messages based on:
   - Exception types (e.g., `EXC_BAD_ACCESS`, `SIGABRT`, `EXC_CRASH`, `EXC_ARITHMETIC`)
-  - Termination reasons and other hints found in macOS crash reports
+  - Termination reasons and hints found in macOS crash reports
 
-- **Command-Line Interface:**  
-  Easily analyze crash logs via the terminal by providing the path to the log file.
+- **Symbolication:**  
+  Integrates with the `atos` tool to symbolicate backtraces, converting memory addresses into human-readable function names. (Requires providing the binary path and target architecture.)
 
-- **Inspired by Industry Insights:**  
-  Enhanced using insights from articles like [How to Understand macOS Finder Crash Report Alerts](https://appleinsider.com/inside/macos/tips/how-to-understand-macos-finder-crash-report-alerts).
+- **Crash Clustering:**  
+  Analyze and cluster multiple crash logs by Exception Type, summarizing common issues across logs.
+
+- **Enhanced Error Handling & Output Formatting:**  
+  - Specific exception handling for file errors (e.g., FileNotFoundError, PermissionError)
+  - Output available in plain text (with ANSI color codes) or JSON format
+
+- **Modularity & Extensibility:**  
+  The code is structured to facilitate further modularization and integration with external libraries if desired.
 
 ## Getting Started
 
 ### Prerequisites
 
 - **Python 3.6+**  
-  Ensure you have Python installed on your system. Download it from [python.org](https://www.python.org/).
+  Ensure you have Python installed. Download it from [python.org](https://www.python.org/).
 
-- **Basic Command-Line Knowledge**  
-  Familiarity with terminal operations is useful for running the tool.
+- **macOS Environment:**  
+  For symbolication, the `atos` tool (available on macOS) must be accessible in your PATH.
 
 ### Installation
 
 1. **Clone the Repository:**
-
+   
 `git clone https://github.com/un1xr00t/macloganalyzer.git`
+  <br />
 `cd macloganalyzer`
+
    
 2. **(Optional) Create and Activate a Virtual Environment:**
 
@@ -54,27 +63,14 @@ A Python-based tool to parse and analyze macOS crash logs. This tool extracts ke
 `pip install -r requirements.txt`
    
 ## Usage
-Run the analyzer by providing the path to your macOS crash log file:
 
-`python3 crash_log_analyzer.py /path/to/your/crash_log.log`
+***Single Crash Log Analysis***
+Run the analyzer by providing the path to a single macOS crash log file. Optionally, provide the binary path and architecture for symbolication:
 
-The script will output a summary that includes:
+`python3 macloganalyzer.py /path/to/your/crash_log.log`
+<br />
+`python3 crash_log_analyzer.py /path/to/your/crash_log.log --binary /path/to/your/binary --arch x86_64`
 
-  Key information extracted from the crash log (e.g., process, identifier, exception type)
-  A simple diagnosis based on the exception type
-  A brief backtrace summary for additional context
 
-## Future Enhancements
-
-  Enhanced Parsing:
-  Improve support for various crash log formats and capture additional details such as complete stack traces, loaded modules, and environment information.
-
-  Automated Symbolication:
-  Integrate with symbolication services to translate memory addresses into human-readable function names.
-
-  Advanced Diagnosis:
-  Incorporate more sophisticated heuristics or machine learning models to better pinpoint the root causes of crashes.
-
-  Graphical Interface:
-  Develop a GUI for easier navigation and analysis of crash logs.
-
+Output Options:
+Use --output json for JSON output or omit for plain text output.
