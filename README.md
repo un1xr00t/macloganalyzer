@@ -65,7 +65,7 @@ Run the analyzer by providing the path to a single macOS crash log file. Optiona
 
 `python3 macloganalyzer.py /path/to/your/crash_log.log`
 <br />
-`python3 crash_log_analyzer.py /path/to/your/crash_log.log --binary /path/to/your/binary --arch x86_64`
+`python3 macloganalyzer.py /path/to/your/crash_log.log --binary /path/to/your/binary --arch x86_64`
 
 
 Output Options:
