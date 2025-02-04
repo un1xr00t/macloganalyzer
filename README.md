@@ -91,6 +91,20 @@ Additional Options:
 <br />
 **Output:** Prints a detailed summary that includes symbolicated backtrace entries, making it easier to understand the crash context.
 
+3. **Crash Clustering (Multiple Files):**
+
+`python3 macloganalyzer.py /path/to/crash1.log /path/to/crash2.log --cluster`
+
+What this does:
+
+**Input:** Provide one or more paths to crash log files.
+<br />
+**Operation:** The analyzer processes each crash log and groups them (clusters) by their Exception Type. It then calculates summary statistics, such as:
+        The number of crashes for each Exception Type.
+        The processes involved in each cluster.
+        The OS versions associated with the crashes.
+<br />
+**Output:** Prints a summary of the clusters to the terminal, which can help you identify common issues or patterns across multiple crash logs.
 
 **Output Options:**
 Use --output json for JSON output or omit for plain text output.
