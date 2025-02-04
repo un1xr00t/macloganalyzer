@@ -95,7 +95,7 @@ Additional Options:
 
 `python3 macloganalyzer.py /path/to/crash1.log /path/to/crash2.log --cluster`
 
-What this does:
+**What this does:**
 
 **Input:** Provide one or more paths to crash log files.
 <br />
