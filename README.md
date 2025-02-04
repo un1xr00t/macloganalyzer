@@ -108,4 +108,4 @@ Additional Options:
 **Output:** Prints a summary of the clusters to the terminal, which can help you identify common issues or patterns across multiple crash logs.
 
 **Output Options:**
-Use --output json for JSON output or omit for plain text output..
+Use --output json for JSON output or omit for plain text output.
