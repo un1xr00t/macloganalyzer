@@ -46,6 +46,7 @@ A Python-based tool to parse and analyze macOS crash logs. This tool extracts ke
 2. **(Optional) Create and Activate a Virtual Environment:**
 
   `python3 -m venv venv`
+  <br />
   `source venv/bin/activate  # On Windows: venv\Scripts\activate`
   
 3. **Install Dependencies:**
