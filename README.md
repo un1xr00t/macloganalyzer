@@ -84,9 +84,9 @@ You can run the analyzer on a single macOS crash log file using one of these com
 Input: The path to your crash log file.
 Additional Options:
 
-`--binary /path/to/your/binary` #Specifies the path to the binary file associated with the crash log. This is used to symbolicate the backtrace, converting raw memory addresses into human-readable function names.
+`--binary /path/to/your/binary` Specifies the path to the binary file associated with the crash log. This is used to symbolicate the backtrace, converting raw memory addresses into human-readable function names.
 <br />
-`--arch x86_64` #Specifies the architecture of the binary (e.g., x86_64 for Intel-based Macs or arm64 for Apple Silicon). This is needed for correct symbolication.
+`--arch x86_64` Specifies the architecture of the binary (e.g., x86_64 for Intel-based Macs or arm64 for Apple Silicon). This is needed for correct symbolication.
 
 **Operation:** Parses the crash log and attempts to symbolicate the backtrace using the provided binary and architecture.
 <br />
