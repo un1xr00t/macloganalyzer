@@ -47,7 +47,7 @@ A Python-based tool to parse and analyze macOS crash logs. This tool extracts ke
 
   `python3 -m venv venv`
   <br />
-  `source venv/bin/activate  # On Windows: venv\Scripts\activate`
+  `source venv/bin/activate`
   
 3. **Install Dependencies:**
 
