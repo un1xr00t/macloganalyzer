@@ -69,9 +69,11 @@ You can run the analyzer on a single macOS crash log file using one of these com
 
 **What this does:**
 
-    Input: The path to your crash log file (/path/to/your/crash_log.log).
-    Operation: Parses the crash log using the default settings.
-    Output: Prints a plain text summary of the crash details and a diagnostic message based on the extracted information.
+**Input:** The path to your crash log file (/path/to/your/crash_log.log).
+<br />
+**Operation:** Parses the crash log using the default settings.
+<br />
+**Output:** Prints a plain text summary of the crash details and a diagnostic message based on the extracted information.
     
 2. **Enhanced Analysis with Symbolication:**
 
