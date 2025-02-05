@@ -129,6 +129,20 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     Returns:
       dict: A dictionary containing the diagnosis and suggestions.
     """
+    
+    diagnosis = {}
+    diagnosis['Summary'] = {
+        "Process": crash_info.get("Process", "N/A"),
+        "Identifier": crash_info.get("Identifier", "N/A"),
+        "Version": crash_info.get("Version", "N/A"),
+        "OS Version": crash_info.get("OS Version", "N/A"),
+        "Exception Type": crash_info.get("Exception Type", "N/A"),
+        "Exception Codes": crash_info.get("Exception Codes", "N/A"),
+        "Termination Reason": crash_info.get("Termination Reason", "N/A"),
+        "Crashed Thread": crash_info.get("Crashed Thread", "N/A")
+    }
+    
+   def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     diagnosis = {}
     diagnosis['Summary'] = {
         "Process": crash_info.get("Process", "N/A"),
@@ -142,10 +156,10 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     }
     
     detailed_diagnosis = []
-    exception_type = crash_info.get("Exception Type", "")
-    termination_reason = crash_info.get("Termination Reason", "")
+    # Ensure these variables are strings even if the original value is None
+    exception_type = crash_info.get("Exception Type") or ""
+    termination_reason = crash_info.get("Termination Reason") or ""
 
-    # Expanded diagnostic messages based on exception types and termination reasons
     if "EXC_BAD_ACCESS" in exception_type:
         detailed_diagnosis.append("EXC_BAD_ACCESS indicates invalid memory access. Check for null or dangling pointers.")
     elif "SIGABRT" in exception_type:
@@ -160,11 +174,8 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     if termination_reason and "Namespace" in termination_reason:
         detailed_diagnosis.append("Termination Reason suggests a potential namespace collision or resource conflict.")
 
-    # Potential for deeper analysis based on specific exception codes or patterns in the backtrace.
-    
     diagnosis['Detailed'] = detailed_diagnosis
 
-    # Optionally symbolicate backtrace if binary provided
     backtrace = crash_info.get("Backtrace", [])
     if binary:
         backtrace = symbolicate_backtrace(backtrace, binary, arch)
