@@ -27,7 +27,7 @@ def parse_crash_log(file_path):
         "Exception Codes": None,
         "Termination Reason": None,
         "Crashed Thread": None,
-        "Backtrace":,  # Initialize Backtrace as an empty list
+        "Backtrace": [],  # Fixed: Initialize Backtrace as an empty list
     }
     
     # Define regular expressions for key fields
