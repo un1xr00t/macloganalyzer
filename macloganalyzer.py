@@ -142,7 +142,7 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
         "Crashed Thread": crash_info.get("Crashed Thread", "N/A")
     }
     
-   def diagnose_crash(crash_info, binary=None, arch="x86_64"):
+    def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     diagnosis = {}
     diagnosis['Summary'] = {
         "Process": crash_info.get("Process", "N/A"),
