@@ -27,7 +27,7 @@ def parse_crash_log(file_path):
         "Exception Codes": None,
         "Termination Reason": None,
         "Crashed Thread": None,
-        "Backtrace": [],  # Fixed: Initialize Backtrace as an empty list
+        "Backtrace": [],  # Initialize Backtrace as an empty list
     }
     
     # Define regular expressions for key fields
@@ -92,7 +92,9 @@ def symbolicate_backtrace(backtrace, binary, arch):
     Returns:
       list: A new backtrace list with symbolicated entries.
     """
-    symbolicated =  # Initialize symbolicated as an empty list
+    # Initialize symbolicated as an empty list
+    symbolicated = []
+    
     # Regex to match hex addresses (e.g., 0x7fff12345678)
     addr_pattern = re.compile(r"(0x[0-9A-Fa-f]+)")
     
@@ -142,7 +144,9 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
         "Crashed Thread": crash_info.get("Crashed Thread", "N/A")
     }
     
-    detailed_diagnosis =  # Initialize detailed_diagnosis as an empty list
+    # Initialize detailed_diagnosis as an empty list
+    detailed_diagnosis = []
+
     # Ensure these variables are strings even if the original value is None
     exception_type = crash_info.get("Exception Type") or ""
     termination_reason = crash_info.get("Termination Reason") or ""
@@ -161,9 +165,9 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     if termination_reason and "Namespace" in termination_reason:
         detailed_diagnosis.append("Termination Reason suggests a potential namespace collision or resource conflict.")
 
-    diagnosis['Detailed'] = detailed_diagnosis  # Assign the list to the 'Detailed' key
+    diagnosis['Detailed'] = detailed_diagnosis
 
-    backtrace = crash_info.get("Backtrace",)
+    backtrace = crash_info.get("Backtrace", [])
     if binary:
         backtrace = symbolicate_backtrace(backtrace, binary, arch)
     diagnosis['Backtrace Summary'] = backtrace[:5]  # First 5 lines
@@ -195,10 +199,10 @@ def report_diagnosis(diagnosis, output_format="plain"):
         for key, value in summary.items():
             print(f"{YELLOW}{key}:{RESET} {value}")
         print("\n" + f"{GREEN}Detailed Diagnosis:{RESET}")
-        for line in diagnosis.get("Detailed",):  # Provide a default empty list if 'Detailed' is missing
+        for line in diagnosis.get("Detailed", []):
             print(f"- {line}")
         print("\n" + f"{GREEN}Backtrace Summary (first 5 lines):{RESET}")
-        for line in diagnosis.get("Backtrace Summary",):  # Provide a default empty list if 'Backtrace Summary' is missing
+        for line in diagnosis.get("Backtrace Summary", []):
             print(f"  {line}")
 
 def cluster_crashes(file_paths, output_format="plain"):
@@ -216,7 +220,9 @@ def cluster_crashes(file_paths, output_format="plain"):
     for file_path in file_paths:
         crash_info = parse_crash_log(file_path)
         key = crash_info.get("Exception Type", "Unknown")
-        clusters.setdefault(key,).append(crash_info)  # Ensure each key has a list to append to
+        if key not in clusters:
+            clusters[key] = []
+        clusters[key].append(crash_info)
     
     # Prepare a summary of clusters
     cluster_summary = {}
@@ -260,15 +266,12 @@ def main():
             sys.exit(1)
         cluster_crashes(args.filepaths, args.output)
     else:
-        if not args.filepaths or len(args.filepaths)!= 1:
+        if not args.filepaths or len(args.filepaths) != 1:
             print("Error: Please provide exactly one crash log file for analysis.")
             sys.exit(1)
-        crash_info = parse_crash_log(args.filepaths)  # Access the first element of the list
+        crash_info = parse_crash_log(args.filepaths[0])  # Access the first element of the list
         diagnosis = diagnose_crash(crash_info, binary=args.binary, arch=args.arch)
         report_diagnosis(diagnosis, args.output)
-
-    # Future enhancements could include more advanced crash clustering algorithms
-    # and integrating with external crash report libraries for deeper analysis.
 
 if __name__ == "__main__":
     main()
