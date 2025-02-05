@@ -19,16 +19,16 @@ def parse_crash_log(file_path):
       dict: A dictionary with extracted fields.
     """
     crash_info = {
-        "Process": None,
-        "Identifier": None,
-        "Version": None,
-        "OS Version": None,
-        "Exception Type": None,
-        "Exception Codes": None,
-        "Termination Reason": None,
-        "Crashed Thread": None,
-        "Backtrace":,
-    }
+    "Process": None,
+    "Identifier": None,
+    "Version": None,
+    "OS Version": None,
+    "Exception Type": None,
+    "Exception Codes": None,
+    "Termination Reason": None,
+    "Crashed Thread": None,
+    "Backtrace":,  # Initialize as an empty list
+}
     
     # Define regular expressions for key fields
     patterns = {
