@@ -161,7 +161,7 @@ def diagnose_crash(crash_info, binary=None, arch="x86_64"):
     if termination_reason and "Namespace" in termination_reason:
         detailed_diagnosis.append("Termination Reason suggests a potential namespace collision or resource conflict.")
 
-    diagnosis['Detailed'] = detailed_diagnosis
+    diagnosis['Detailed'] = detailed_diagnosis  # Assign the list to the 'Detailed' key
 
     backtrace = crash_info.get("Backtrace",)
     if binary:
